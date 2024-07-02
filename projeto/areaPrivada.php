@@ -67,16 +67,16 @@
                     include("abaEditor.php");
                     break;
                 case "novo":
-                    include("novo-usuario.php");
+                    include("receitas/novo-receita.php");
                     break;
                 case "listar":
-                    include("listar-usuario.php");
+                    include("receitas/listar-receitas.php");
                     break;
                 case "salvar":
-                    include("salvar-usuario.php");
+                    include("receitas/salvar-receita.php");
                     break;
                 case "editar":
-                    include("editar-usuario.php");
+                    include("receitas/editar-receita.php");
                     break;
                 case "novo-ingrediente":
                     include("ingredientes/novo-ingrediente.php");
@@ -137,6 +137,9 @@
                     break;
                 case "editar-cargo":
                     include("cargo/editar-cargo.php");
+                    break;
+                case "novo-livroreceitas":
+                    include("livro-receitas/novo-livroreceitas.php");
                     break;
                 default:
                 $text = "Bem Vindo ao Ricavi de Lucca!";

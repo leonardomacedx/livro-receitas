@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #2d2626;
@@ -26,7 +26,7 @@
     <div class="container">
         <h1>Editar Receita</h1>
         <?php
-        $sql = "SELECT * FROM cargos WHERE id=" . $_REQUEST["id"];
+        $sql = "SELECT * FROM receitas WHERE id=" . $_REQUEST["id"];
         $res = $conn->query($sql);
         $row = $res->fetch_object();
 
@@ -69,6 +69,6 @@
             </div>
         </form>
     </div>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

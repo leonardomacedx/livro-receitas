@@ -20,7 +20,7 @@ $u = new Usuarios();
 <div id="corpo-form-cad">
     <h1>Cadastre-se, Ricavi de Lucca</h1>
 
-    <form method="POST">
+    <form method="POST" action="index.php">
         <input type="text" name="nome" placeholder="Nome Completo" maxlength="30"/>
         <input type="text" name="telefone" placeholder="Telefone" maxlength="30"/>
         <input type="email" name="email" placeholder="Usuário" maxlength="40"/>
@@ -42,7 +42,7 @@ if(isset($_POST['nome'])):
 
     if(!empty($nome) && !empty($telefone) && !empty($email) && !empty($senha) && !empty($conf_senha)):
         
-        $u->conectar("projeto_login", "localhost", "root", "");
+        $u->conectar("livroreceitas", "localhost", "root", "user");
 
         if($u-> msgERRO == ""):
 

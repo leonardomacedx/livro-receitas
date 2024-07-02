@@ -19,31 +19,64 @@ SET time_zone = "+00:00";
 
 --
 -- Banco de dados: `livroreceitas`
+
+create database livroreceitas;
+
+use livroreceitas;
 --
 
 -- --------------------------------------------------------
-
---
 -- Estrutura para tabela `cargos`
+
+create table usuarios(
+                         id_usuario int AUTO_INCREMENT PRIMARY KEY,
+                         nome varchar(30),
+                         telefone varchar(30),
+                         email varchar(40),
+                         senha varchar(32)
+);
+
+--
+-- Estrutura para tabela `receitas`
 --
 
-CREATE TABLE `cargos` (
-  `id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE `receitas` (
+  `id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
   `receita` varchar(255) NOT NULL,
   `ingredientes` varchar(255) NOT NULL,
   `preparo` varchar(255) NOT NULL,
-  `tipo` varchar(255) NOT NULL,
+  `tipo` int(45) UNSIGNED NOT NULL ,
+  FOREIGN KEY (tipo) REFERENCES categoria(id),
   `dificuldade` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+-- Estrutura para tabela `livro_receitas`
+
+CREATE TABLE `livro_receitas` (
+                            `id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                            `nome` varchar(45) NOT NULL);
+
+-- --------------------------------------------------------
 --
--- Despejando dados para a tabela `cargos`
+-- Despejando dados para a tabela `receitas`
 --
 
-INSERT INTO `cargos` (`id`, `nome`, `receita`, `ingredientes`, `preparo`, `tipo`, `dificuldade`) VALUES
+INSERT INTO `receitas` (`id`, `nome`, `receita`, `ingredientes`, `preparo`, `tipo`, `dificuldade`) VALUES
 (30, 'adsasdadas', 'adsasdadsdas', 'sdaasdsaadsad', 'dasasdasdsdaads', '1', 'Médio'),
 (31, 'Cozinheiros', 'feijoada', 'preparo', 'soco', '1', 'Fácil');
+
+-- --------------------------------------------------------
+-- Associação entre livro e receitas
+
+CREATE TABLE `livro_receitas_receitas` (
+                                           `id_livro` int(10) UNSIGNED NOT NULL,
+                                           `id_receita` int(10) UNSIGNED NOT NULL,
+                                           PRIMARY KEY (`id_livro`, `id_receita`),
+                                           FOREIGN KEY (`id_livro`) REFERENCES `livro_receitas`(`id`),
+                                           FOREIGN KEY (`id_receita`) REFERENCES `receitas`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -52,7 +85,7 @@ INSERT INTO `cargos` (`id`, `nome`, `receita`, `ingredientes`, `preparo`, `tipo`
 --
 
 CREATE TABLE `categoria` (
-  `id` int(45) UNSIGNED NOT NULL,
+  `id` int(45) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `tipo` varchar(255) NOT NULL,
   `dificuldade` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -75,7 +108,7 @@ INSERT INTO `categoria` (`id`, `tipo`, `dificuldade`) VALUES
 --
 
 CREATE TABLE `funcionario` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
   `cpf` varchar(45) NOT NULL,
   `data_admissao` date NOT NULL,
@@ -99,7 +132,7 @@ INSERT INTO `funcionario` (`id`, `nome`, `cpf`, `data_admissao`, `salario`, `car
 --
 
 CREATE TABLE `ingredientes` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -118,7 +151,7 @@ INSERT INTO `ingredientes` (`id`, `nome`) VALUES
 --
 
 CREATE TABLE `nivel` (
-  `id` int(45) UNSIGNED NOT NULL,
+  `id` int(45) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `dificuldade` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -129,7 +162,7 @@ CREATE TABLE `nivel` (
 --
 
 CREATE TABLE `restaurante` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `nome` varchar(45) NOT NULL,
   `tipo` varchar(255) NOT NULL,
   `contato` varchar(255) NOT NULL,
@@ -151,7 +184,7 @@ INSERT INTO `restaurante` (`id`, `nome`, `tipo`, `contato`, `numero`) VALUES
 --
 
 CREATE TABLE `trabalho` (
-  `id` int(45) UNSIGNED NOT NULL,
+  `id` int(45) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `cargo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -166,97 +199,6 @@ INSERT INTO `trabalho` (`id`, `cargo`) VALUES
 (4, 'teste'),
 (5, 'puta+');
 
---
--- Índices para tabelas despejadas
---
-
---
--- Índices de tabela `cargos`
---
-ALTER TABLE `cargos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `categoria`
---
-ALTER TABLE `categoria`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `funcionario`
---
-ALTER TABLE `funcionario`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `ingredientes`
---
-ALTER TABLE `ingredientes`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `nivel`
---
-ALTER TABLE `nivel`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `restaurante`
---
-ALTER TABLE `restaurante`
-  ADD PRIMARY KEY (`id`);
-
---
--- Índices de tabela `trabalho`
---
-ALTER TABLE `trabalho`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT para tabelas despejadas
---
-
---
--- AUTO_INCREMENT de tabela `cargos`
---
-ALTER TABLE `cargos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
---
--- AUTO_INCREMENT de tabela `categoria`
---
-ALTER TABLE `categoria`
-  MODIFY `id` int(45) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de tabela `funcionario`
---
-ALTER TABLE `funcionario`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT de tabela `ingredientes`
---
-ALTER TABLE `ingredientes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT de tabela `nivel`
---
-ALTER TABLE `nivel`
-  MODIFY `id` int(45) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `restaurante`
---
-ALTER TABLE `restaurante`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT de tabela `trabalho`
---
-ALTER TABLE `trabalho`
-  MODIFY `id` int(45) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

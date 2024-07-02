@@ -27,6 +27,9 @@
         <li class="nav-item">
           <a class="nav-link" href="?page=listar-cargo">Cargo</a>
         </li>
+          <li class="nav-item">
+              <a class="nav-link" href="?page=novo-livroreceitas">Livro de receitas</a>
+          </li>
       </ul>
     </div>
   </div>

@@ -8,7 +8,7 @@ switch ($_REQUEST["acao"]) {
         $tipo = $_POST["tipo"];
         $dificuldade = $_POST["dificuldade"];
 
-        $sql = "INSERT INTO cargos (nome, receita, ingredientes, preparo, tipo, dificuldade) VALUES ('{$nome}', '{$receita}', '{$ingredientes}', '{$preparo}', '{$tipo}', '{$dificuldade}')";
+        $sql = "INSERT INTO receitas (nome, receita, ingredientes, preparo, tipo, dificuldade) VALUES ('{$nome}', '{$receita}', '{$ingredientes}', '{$preparo}', '{$tipo}', '{$dificuldade}')";
 
         $res = $conn->query($sql);
 
@@ -28,7 +28,7 @@ switch ($_REQUEST["acao"]) {
         $tipo = $_POST["tipo"];
         $dificuldade = $_POST["dificuldade"];
 
-        $sql = "UPDATE cargos SET 
+        $sql = "UPDATE receitas SET 
                     receita='{$receita}',
                     ingredientes='{$ingredientes}',
                     preparo='{$preparo}',
@@ -49,7 +49,7 @@ switch ($_REQUEST["acao"]) {
         break;
 
     case 'excluir':
-        $sql = "DELETE FROM cargos WHERE id=".$_REQUEST["id"];
+        $sql = "DELETE FROM receitas WHERE id=".$_REQUEST["id"];
 
         $res = $conn->query($sql);
 

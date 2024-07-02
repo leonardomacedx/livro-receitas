@@ -39,7 +39,7 @@ if(isset($_POST['email'])):
 
     if(!empty($email) && !empty($senha)):
 
-        $u->conectar("projeto_login", "localhost", "root", "");
+        $u->conectar("livroreceitas", "localhost", "root", "user");
 
         if($u->msgERRO == ""):
 
