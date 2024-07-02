@@ -1,0 +1,18 @@
+/* css/styles.css */
+.button-container {
+    text-align: right; /* Alinha o conteúdo à direita */
+    margin-bottom: 10px; /* Ajuste o espaçamento inferior conforme necessário */
+}
+
+.btn-add-user {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: #fff; /* Cor do texto do botão */
+    border: none; /* Remove a borda do botão */
+    padding: 10px 20px; /* Espaçamento interno do botão */
+    border-radius: 5px; /* Borda arredondada */
+    cursor: pointer; /* Altera o cursor ao passar o mouse */
+}
+
+.btn-add-user:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+}
